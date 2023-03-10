@@ -27,7 +27,7 @@ public class QuestionServiceImpl implements QuestionService{
     }
     @Override
     public Question getQuestionById(int questionId) {
-        return questionRepository.findById(questionId).orElseThrow(() -> new RuntimeException());
+        return questionRepository.getOne(questionId);
     }
     @Override
     public List<Question> getQuestionsOfQuiz(Quiz quiz) {

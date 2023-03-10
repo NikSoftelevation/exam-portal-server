@@ -15,10 +15,16 @@ export class QuestionService {
   public getQuestionsOfQuizForTest(qId: any) {
     return this._http.get(`${baseUrl}/question/quiz/${qId}`);
   }
+  //add  question
   public addQuestion(question: any) {
     return this._http.get(`${baseUrl}/question/`, question);
   }
+  //delete question
   public deleteQuestion(questionId: any) {
     return this._http.delete(`${baseUrl}/question/${questionId}`);
+  }
+  //evaluate quiz
+  public evalQuiz(questions:any){
+    return this._http.post(`${baseUrl}/question/eval-quiz`,questions);
   }
 }

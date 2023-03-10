@@ -29,6 +29,8 @@ public class Question{
     private String option4;
     @NotNull
     private String answer;
+    @Transient
+    private String givenAnswer;
     @ManyToOne(fetch=FetchType.EAGER)
     private Quiz quiz;
 }

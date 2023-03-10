@@ -1,13 +1,13 @@
-import { LocationStrategy } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { QuestionService } from 'src/app/service/question.service';
-import Swal from 'sweetalert2';
+import { LocationStrategy } from "@angular/common";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { QuestionService } from "src/app/service/question.service";
+import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-start',
-  templateUrl: './start.component.html',
-  styleUrls: ['./start.component.css']
+  selector: "app-start",
+  templateUrl: "./start.component.html",
+  styleUrls: ["./start.component.css"],
 })
 export class StartComponent implements OnInit {
   qId: any;
@@ -19,10 +19,14 @@ export class StartComponent implements OnInit {
   isSubmit = false;
   timer: any;
 
-  constructor(private locationSt: LocationStrategy, private _route: ActivatedRoute, private _question: QuestionService) { }
+  constructor(
+    private locationSt: LocationStrategy,
+    private _route: ActivatedRoute,
+    private _question: QuestionService
+  ) {}
   ngOnInit(): void {
     this.preventBackButton();
-    this.qId = this._route.snapshot.params['qId'];
+    this.qId = this._route.snapshot.params["qId"];
     this.loadQuestions();
   }
   loadQuestions() {
@@ -30,27 +34,27 @@ export class StartComponent implements OnInit {
       (data: any) => {
         this.questions = data;
         this.timer = this.questions.length * 2 * 60;
-        this.questions.array.forEach((q: any) => {
-          q['givenAnswer'] = '';
-        });
+
+        // this.questions.forEach((q: any) => {
+        // q["givenAnswer"] = "";
+        //  });
 
         console.log(this.questions);
         this.startTimer();
-
       },
       (error: any) => {
         console.log(error);
-        Swal.fire('Error', 'Error in loading quiz', 'error');
-      });
+        Swal.fire("Error", "Error in loading quiz", "error");
+      }
+    );
   }
   preventBackButton() {
-    history.pushState(null, 'null', location.href);
+    history.pushState(null, "null", location.href);
     this.locationSt.onPopState(() => {
-      history.pushState(null, 'null', location.href);
+      history.pushState(null, "null", location.href);
     });
   }
   submitQuiz() {
-
     Swal.fire({
       title: `Do you want to submit he quiz ?`,
       showCancelButton: true,
@@ -71,25 +75,35 @@ export class StartComponent implements OnInit {
       } else {
         this.timer--;
       }
-    }, 1000)
-  } getFormattedTime() {
+    }, 1000);
+  }
+  getFormattedTime() {
     let mm = Math.floor(this.timer / 60);
     let ss = this.timer - mm * 60;
     return `${mm} min :  ${ss} sec`;
   }
   evalQuiz() {
-    //calculation
-    this.isSubmit = true;
-    this.questions.forEach((q: any) => {
+    ///calculation
+    //call to server to check questions
 
-      if (q.givenAnswer == q.answer) {
-        this.correctAnswers++
-        let marksSingle = this.questions[0].quiz.maxMarks / this.questions.length;
-        this.marksGot += marksSingle;
+    this._question.evalQuiz(this.questions).subscribe(
+      (data: any) => {
+        console.log(data);
+      },
+      (error:any) => {
+        console.log(error);
       }
-      if (q.givenAnswer.trim() != '') {
-        this.attempted++;
-      }
-    });
+    );
+    // this.isSubmit = true;
+    // this.questions.forEach((q: any) => {
+    //if (q.givenAnswer == q.answer) {
+    // this.correctAnswers++
+    // let marksSingle = this.questions[0].quiz.maxMarks / this.questions.length;
+    // this.marksGot += marksSingle;
+    // }
+    // if (q.givenAnswer.trim() != '') {
+    //this.attempted++;
+    //}
+    //});
   }
 }
