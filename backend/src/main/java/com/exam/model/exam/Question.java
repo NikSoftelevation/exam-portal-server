@@ -96,7 +96,7 @@ public class Question {
         return answer;
     }
 
-    @JsonProperty
+    @JsonProperty("answer")
     public void setAnswer(String answer) {
         this.answer = answer;
     }
