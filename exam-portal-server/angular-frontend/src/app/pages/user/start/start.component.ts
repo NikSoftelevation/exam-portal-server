@@ -110,4 +110,7 @@ export class StartComponent implements OnInit {
     //}
     //});
   }
+  printPage() {
+    window.print();
+  }
 }
