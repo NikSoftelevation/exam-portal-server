@@ -89,8 +89,12 @@ export class StartComponent implements OnInit {
     this._question.evalQuiz(this.questions).subscribe(
       (data: any) => {
         console.log(data);
+        this.marksGot = data.marksGot;
+        this.correctAnswers = data.correctAnswers;
+        this.attempted = data.attempted;
+        this.isSubmit = true;
       },
-      (error:any) => {
+      (error: any) => {
         console.log(error);
       }
     );
