@@ -1,0 +1,47 @@
+<mat-card>
+  <mat-action-list>
+    <div mat-subheader>Menu</div>
+    <button routerLink="/admin" mat-list-item>
+      <div style="display: flex; align-items: center">
+        <mat-icon mat-list-icon>home</mat-icon>
+        <span style="padding-left: 8px; font-size: 16px">Home</span>
+      </div>
+    </button>
+    <button mat-list-item routerLink="/admin/profile">
+      <div style="display: flex; align-items: center">
+        <mat-icon mat-list-icon>verified</mat-icon>
+        <span style="padding-left: 8px; font-size: 16px">Profile</span>
+      </div>
+    </button>
+    <button mat-list-item routerLink="/admin/categories">
+      <div style="display: flex; align-items: center">
+        <mat-icon mat-list-icon>list</mat-icon>
+        <span style="padding-left: 8px; font-size: 16px">Categories</span>
+      </div>
+    </button>
+    <button routerLink="/admin/add-category" mat-list-item>
+      <div style="display: flex; align-items: center">
+        <mat-icon mat-list-icon>add_circle_outline</mat-icon>
+        <span style="padding-left: 8px; font-size: 16px">Add Category</span>
+      </div>
+    </button>
+    <button routerLink="/admin/quizzes" mat-list-item>
+      <div style="display: flex; align-items: center">
+        <mat-icon mat-list-icon>quiz</mat-icon>
+        <span style="padding-left: 8px; font-size: 16px">Quiz</span>
+      </div>
+    </button>
+    <button routerLink="/admin/add-quiz" mat-list-item>
+      <div style="display: flex; align-items: center">
+        <mat-icon mat-list-icon>add</mat-icon>
+        <span style="padding-left: 8px; font-size: 16px">Add Quiz</span>
+      </div>
+    </button>
+    <button routerLink="/admin/profile" mat-list-item>
+      <div style="display: flex; align-items: center">
+        <mat-icon mat-list-icon>power_settings_new</mat-icon>
+        <span style="padding-left: 8px; font-size: 16px">Logout</span>
+      </div>
+    </button>
+  </mat-action-list>
+</mat-card>

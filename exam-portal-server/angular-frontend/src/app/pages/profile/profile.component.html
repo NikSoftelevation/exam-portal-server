@@ -1,0 +1,54 @@
+<mat-card *ngIf="user">
+  <h1>Welcome to profile</h1>
+  <mard-card-content>
+    <div class="bootstrap-wrapper">
+      <div class="container">
+        <div class="container text-center">
+          <img
+            src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+            alt=""
+            class="profile-image"
+          />
+          <h1 style="margin-top: 20px">Nikhil Sharma</h1>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <table class="table text-center">
+              <tr>
+                <td>Username</td>
+                <td>{{ user.username }}</td>
+              </tr>
+              <tr>
+                <td>UserId</td>
+                <td>EXAM{{ user.id }}</td>
+              </tr>
+              <tr *ngIf="user.phone">
+                <td>Phone</td>
+                <td>{{ user.phone }}</td>
+              </tr>
+              <tr>
+                <td>Role</td>
+                <td>{{ user.authorities[0].authority }}</td>
+              </tr>
+              <tr>
+                <td>Status</td>
+                <td>{{ user.enabled ? "ACTIVE" : "NOTACTIVE" }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mard-card-content>
+  <div class="container text-center">
+    <mat-card-actions style="margin-top: 20px">
+      <button style="margin-left: 430px" mat-raised-button color="primary">
+        UPDATE
+      </button>
+      <button style="margin-left: 10px" mat-raised-button color="accent">
+        SHARE
+      </button>
+    </mat-card-actions>
+  </div>
+</mat-card>
